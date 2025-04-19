@@ -9,7 +9,7 @@ namespace Code.Infrastructure.Installers
   {
     public void Initialize()
     {
-      Container.Resolve<GameStateMachine>().Enter<BootstrapState>();
+      Container.Resolve<IGameStateMachine>().Enter<BootstrapState>();
     }
 
     public override void InstallBindings()
@@ -20,7 +20,7 @@ namespace Code.Infrastructure.Installers
 
     private void BindInstaller()
     {
-      Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
+      Container.BindInterfacesAndSelfTo<BootstrapInstaller>().FromInstance(this).AsSingle();
     }
 
     private void BindInfrastructureServices()
